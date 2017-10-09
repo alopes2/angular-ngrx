@@ -13,13 +13,11 @@ export class DataStorageService {
               private authService: AuthService) {}
 
   storeRecipes() {
-    const token = this.authService.getToken();
     // return this.http
     //         .put('https://angular-recipe-book-ad2eb.firebaseio.com/recipes.json?auth=' + token,
     //               this.recipeService.getRecipes());
     const header = new HttpHeaders()
                         .set('Authorization', 'asdlkf');
-    const params = new HttpParams().set('auth', token);
     // return this.httpClient
     //           .put('https://angular-recipe-book-ad2eb.firebaseio.com/recipes.json',
     //             this.recipeService.getRecipes(), {
@@ -37,7 +35,6 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
     // return this.http
     //         .get('https://angular-recipe-book-ad2eb.firebaseio.com/recipes.json?auth=' + token)
     //         .map(
