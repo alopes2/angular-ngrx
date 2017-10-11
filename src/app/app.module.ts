@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './auth/auth-guard.service';
-import { AuthService } from './auth/auth.service';
 import { DataStorageService } from './shared/data-storage.service';
 // import { HttpModule } from '@angular/http';
 import { RecipeService } from './recipes/recipe.service';

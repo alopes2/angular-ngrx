@@ -1,4 +1,3 @@
-import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 @Component({
@@ -10,7 +9,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   loadedFeature = 'recipe';
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
     const config = {

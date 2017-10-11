@@ -1,5 +1,4 @@
 import { Store } from '@ngrx/store';
-import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, CanLoad, Route } from '@angular/router';
 
@@ -11,21 +10,27 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isAuthenticated = this.store.select('auth').map(
+    const isAuthenticated = this.store.select('auth')
+        .take(1)
+        .map(
           (authState: fromAuth.State) => {
             return authState.authenticated;
           }
-        );
-    if (!isAuthenticated) {
-      this.router.navigate(['/']);
-    }
+        )
+        .do(authenticated => {
+          if (!authenticated) {
+            this.router.navigate(['/']);
+          }
+        } );
 
     return isAuthenticated;
   }
 
 
   canLoad(route: Route) {
-        return this.store.select('auth').map(
+        return this.store.select('auth')
+        .take(1)
+        .map(
           (authState: fromAuth.State) => {
             return authState.authenticated;
           }
